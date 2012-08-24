@@ -9,9 +9,11 @@ cmake_minimum_required ( VERSION 2.8 )
 include ( cmake/dist.cmake )
 include ( lua )
 
-# No default driver to install
+find_package ( ODBC REQUIRED )
+include_directories ( ${ODBC_INCLUDE_DIRECTORIES} src )
 
-# Install  documentation
-install_data ( README )
-install_doc ( doc/ )
-install_test ( tests/ )
+if ( UNIX )
+  add_definitions ( -DUNIXODBC )
+endif ( )
+
+install_lua_module ( odbc src/ls_odbc.c src/luasql.c LINK ${ODBC_LIBRARIES} )
