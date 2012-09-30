@@ -16,4 +16,4 @@ if ( UNIX )
   add_definitions ( -DUNIXODBC )
 endif ( )
 
-install_lua_module ( odbc src/ls_odbc.c src/luasql.c LINK ${ODBC_LIBRARIES} )
+install_lua_module ( luasql.odbc src/ls_odbc.c src/luasql.c LINK ${ODBC_LIBRARIES} )
